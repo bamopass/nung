@@ -82,16 +82,29 @@ router.post("/adminaddseatprices2/:branchID/:theaterTypeID", function (req, res)
     var Seattypes = req.body.Seattypes;
     var seat_no = req.body.seat_no;
     var Seatprice = req.body.seatPrice;
-
-    var sql_seat = "INSERT INTO seat (seatNumber, seatType,theaterID,price ) VALUES ('"+seat_no+"', '"+Seattypes+"', '"+theater_ID+"', '"+Seatprice+"')";
-    connection.query(sql_seat, function (err, result1) {
+    var seat_row = req.body.seatRows;
+    console.log(seat_row);
+    var sql_addSeatRows = "INSERT INTO seat_row(name) VALUES ('"+seat_row+"')";
+    connection.query(sql_addSeatRows, function (err, result1) {
         if (err) {
             throw err;
         } else {
-            var Name = req.body.Name;
-            var sql_row = "INSERT INTO seat_row(name) VALUES ('"+Name+"')";
-            console.log('insert complete');
-            res.redirect("/manageAdmin");
+            var get_seatrow = "SELECT DISTINCT row_id FROM seat_row WHERE name = '"+seat_row+"'"
+            connection.query(get_seatrow, function (err, foundseatrow){
+                if (err) {
+                    throw err;
+                } else {
+                    var sql_seat = "INSERT INTO seat (seatRow,seatNumber, seatType,theaterID,price ) VALUES ('"+foundseatrow[0].row_id+"','"+seat_no+"', '"+Seattypes+"', '"+theater_ID+"', '"+Seatprice+"')";
+                    connection.query(sql_seat, function (err, result1) {
+                        if (err) {
+                            throw err;
+                        } else {
+                            console.log('insert complete');
+                            res.redirect("/manageAdmin");
+                        }
+                    })
+                }
+            })
         }
     })
 })

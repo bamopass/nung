@@ -48,11 +48,10 @@ app.use(function(req,res,next){
     res.locals.currentUser_firstName = req.session.firstname;
     res.locals.currentAdmin = req.session.adminEmail;
 
-    
     next();
     })
 
-    
+
 app.use("/", home);
 app.use("/", auth);
 app.use("/", promotion);
