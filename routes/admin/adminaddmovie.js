@@ -37,9 +37,10 @@ router.post("/adminaddmovies", function (req, res) {
     var outyy = req.body.outyy;
     var Audio = req.body.Audio;
     var MovieImage = req.body.MovieImage;
+    var theaterTypeID = req.body.theaterTypeID;
     
     console.log(MovieImage)
-    var sql = "INSERT INTO moviedata (movieName,genreTypeID,movieDetail,movieLenght,starring,rate,ReleaseDay, ReleaseMonth,ReleaseYear,OutDay,OutMonth,OutYear,audio, imageLink) VALUES ('"+MovieName +"', '"+GenretypeID+"', '"+MovieDetail+"', '"+Movielength+"', '"+Starring+"', '"+MovieRate+"', '"+releasedd+"', '"+outdd+"', '"+releasemm+"', '"+releaseyy+"', '"+outmm+"', '"+outyy+"', '"+Audio+"', '"+MovieImage+"')";
+    var sql = "INSERT INTO moviedata (movieName,genreTypeID,movieDetail,movieLenght,starring,rate,ReleaseDay, ReleaseMonth,ReleaseYear,OutDay,OutMonth,OutYear,audio, imageLink,theaterTypeID ) VALUES ('"+MovieName +"', '"+GenretypeID+"', '"+MovieDetail+"', '"+Movielength+"', '"+Starring+"', '"+MovieRate+"', '"+releasedd+"', '"+outdd+"', '"+releasemm+"', '"+releaseyy+"', '"+outmm+"', '"+outyy+"', '"+Audio+"', '"+MovieImage+"', '"+theaterTypeID+"')";
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;

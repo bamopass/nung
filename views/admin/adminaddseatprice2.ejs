@@ -75,12 +75,17 @@
                     </select>
                 </div>
                 <div class="seatprice-input">
-                    <label for="seatrow" class="seatprice-input__label">seat rows</label>
+                    <div class="seatprice-input">
+                        <label for="price" class="seatprice-input__label">Seat Row</label>
+                        <input id="branchName" name="Name" class="seatprice-input__input">
+                    </div>
+                    <!-- <label for="seatrow" class="seatprice-input__label">seat rows</label>
                     <select name="Seatrows" required>
+
                         <option>- Please select Seatrows -</option>
-                        <% Seatrows.forEach(function(Seat_r){ %>
+                         <% Seatrows.forEach(function(Seat_r){ %>
                             <option value="<%=Seat_r.row_id%>"><%=Seat_r.name%></option>
-                        <% }); %> 
+                        <% }); %>  -->
                     </select>
                 </div>
                 <div class="seatprice-input">

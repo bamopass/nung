@@ -80,15 +80,16 @@ router.post("/adminaddseatprices2/:branchID/:theaterTypeID", function (req, res)
     var TheathertypeID = req.params.theaterTypeID;
     var theater_ID = req.body.theater_no;
     var Seattypes = req.body.Seattypes;
-    var Seatrows = req.body.Seatrows;
     var seat_no = req.body.seat_no;
     var Seatprice = req.body.seatPrice;
 
-    var sql_seat = "INSERT INTO seat (seatRow,seatNumber, seatType,theaterID,price ) VALUES ('"+Seatrows+"', '"+seat_no+"', '"+Seattypes+"', '"+theater_ID+"', '"+Seatprice+"')";
+    var sql_seat = "INSERT INTO seat (seatNumber, seatType,theaterID,price ) VALUES ('"+seat_no+"', '"+Seattypes+"', '"+theater_ID+"', '"+Seatprice+"')";
     connection.query(sql_seat, function (err, result1) {
         if (err) {
             throw err;
         } else {
+            var Name = req.body.Name;
+            var sql_row = "INSERT INTO seat_row(name) VALUES ('"+Name+"')";
             console.log('insert complete');
             res.redirect("/manageAdmin");
         }
